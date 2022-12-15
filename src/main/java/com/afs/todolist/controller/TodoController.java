@@ -21,22 +21,28 @@ public class TodoController {
     }
 
     @GetMapping
-    @CrossOrigin(origins = {"http://localhost:3000"})
     List<Todo> getAll() {
         return todoService.findAll();
     }
 
     @PostMapping
-    @CrossOrigin(origins = {"http://localhost:3000"})
     @ResponseStatus(HttpStatus.CREATED)
     Todo addTodo(@RequestBody Todo todo) {
         return todoService.add(todo);
     }
 
-    //delete
-
-
     //update
+    @PutMapping("/{id}")
+    Todo updateTodo(@PathVariable String id, @RequestBody Todo todo) {
+        return todoService.update(id, todo);
+    }
+
+
+    //delete
+    @DeleteMapping("/{id}")
+    Todo deleteTodo(@PathVariable String id) {
+        return todoService.delete(id);
+    }
 }
 
 //@CrossOrigin method
