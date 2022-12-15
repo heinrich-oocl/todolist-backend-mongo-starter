@@ -3,10 +3,8 @@ package com.afs.todolist.controller;
 import com.afs.todolist.controller.mapper.TodoMapper;
 import com.afs.todolist.entity.Todo;
 import com.afs.todolist.service.TodoService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +21,24 @@ public class TodoController {
     }
 
     @GetMapping
-    @CrossOrigin
+    @CrossOrigin(origins = {"http://localhost:3000"})
     List<Todo> getAll() {
         return todoService.findAll();
     }
+
+    @PostMapping
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @ResponseStatus(HttpStatus.CREATED)
+    Todo addTodo(@RequestBody Todo todo) {
+        return todoService.add(todo);
+    }
+
+    //delete
+
+
+    //update
 }
+
+//@CrossOrigin method
+//@CrossOrigin controller
+//
